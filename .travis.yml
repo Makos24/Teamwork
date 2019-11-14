@@ -8,7 +8,14 @@ services:
   - postgresql
 
 addons:
-  postgresql: "12.0"
+  postgresql: "10"
+  apt:
+    packages:
+      - postgresql-10
+      - postgresql-client-10
+env:
+  global:
+    - PGPORT=5433
 
 before_script:
   - psql -c 'create database testdb;' -U postgres
