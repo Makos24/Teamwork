@@ -10,3 +10,6 @@ services:
 before_script:
   - psql -c 'create database testdb;' -U postgres
   - psql -U postgres -d testdb -f test/testdb.sql
+
+  addons:
+  postgresql: "12.0"
