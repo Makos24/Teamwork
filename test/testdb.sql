@@ -34,7 +34,7 @@ CREATE TABLE public.articles (
 );
 
 
-ALTER TABLE public.articles OWNER TO postgres;
+ALTER TABLE public.articles OWNER TO me;
 
 --
 -- Name: categories; Type: TABLE; Schema: public; Owner: me
@@ -47,7 +47,7 @@ CREATE TABLE public.categories (
 );
 
 
-ALTER TABLE public.categories OWNER TO postgres;
+ALTER TABLE public.categories OWNER TO me;
 
 --
 -- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: me
@@ -62,7 +62,7 @@ CREATE SEQUENCE public.categories_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.categories_id_seq OWNER TO postgres;
+ALTER TABLE public.categories_id_seq OWNER TO me;
 
 --
 -- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
@@ -84,7 +84,7 @@ CREATE TABLE public.comments (
 );
 
 
-ALTER TABLE public.comments OWNER TO postgres;
+ALTER TABLE public.comments OWNER TO me;
 
 --
 -- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: me
@@ -99,7 +99,7 @@ CREATE SEQUENCE public.comments_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.comments_id_seq OWNER TO postgres;
+ALTER TABLE public.comments_id_seq OWNER TO me;
 
 --
 -- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
@@ -121,7 +121,7 @@ CREATE TABLE public.gifs (
 );
 
 
-ALTER TABLE public.gifs OWNER TO postgres;
+ALTER TABLE public.gifs OWNER TO me;
 
 --
 -- Name: gifs_id_seq; Type: SEQUENCE; Schema: public; Owner: me
@@ -136,7 +136,7 @@ CREATE SEQUENCE public.gifs_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.gifs_id_seq OWNER TO postgres;
+ALTER TABLE public.gifs_id_seq OWNER TO me;
 
 --
 -- Name: gifs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
@@ -158,7 +158,7 @@ CREATE SEQUENCE public.posts_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.posts_id_seq OWNER TO postgres;
+ALTER TABLE public.posts_id_seq OWNER TO me;
 
 --
 -- Name: posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
@@ -181,7 +181,7 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO postgres;
+ALTER TABLE public.users OWNER TO me;
 
 --
 -- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: me
@@ -196,7 +196,7 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO postgres;
+ALTER TABLE public.users_id_seq OWNER TO me;
 
 --
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
