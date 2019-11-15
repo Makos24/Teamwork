@@ -26,8 +26,6 @@ let articleId;
 
 let token = "";
 
-console.log(process.env);
-
 describe("CRUD Articles", () => {
   beforeEach(done => {
     chai
@@ -35,6 +33,7 @@ describe("CRUD Articles", () => {
       .post("/api/v1/auth/login")
       .send(login_details)
       .end((err, res) => {
+        console.log(res.body);
         expect(res).to.have.status(200);
         expect(res.body.status).to.equals("success");
         expect(res.body.data).to.have.property("token");
