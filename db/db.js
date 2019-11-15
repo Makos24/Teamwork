@@ -7,9 +7,9 @@ const pgp = require("pg-promise")(initOptions);
 let cn = "";
 
 if (process.env.NODE_ENV == "test") {
-  cn = "postgres://postgres@localhost/testdb";
+  cn = "postgres://me:password@localhost:5432/testdb";
 } else {
-  //cn = "postgres://postgres@localhost/testdb";
+  cn = "postgres://postgres@localhost/testdb";
 }
 
 const db = pgp(cn);
