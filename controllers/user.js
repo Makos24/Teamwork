@@ -1,5 +1,4 @@
-const pgp = require("pg-promise")(/* options */);
-const db = pgp("postgres://me:password@localhost:5432/teamwork");
+const { db } = require("../db/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 

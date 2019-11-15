@@ -1,2 +1,0 @@
-# Teamwork
-DevCTrainingWithAndela Capstone Project
