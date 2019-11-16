@@ -20,10 +20,11 @@ let user = {
 
 let user_update = {
   name: "Mason G. Frank",
-  email: "frankm@team.com"
+  email: "frankm" + no + "@team.com"
 };
 
 let token = "";
+let userId;
 
 describe("CRUD Users", () => {
   beforeEach(done => {
@@ -56,6 +57,7 @@ describe("CRUD Users", () => {
           expect(res.body.status).to.equals("success");
           expect(res.body.data.message).to.equals("User successfully created");
           expect(res.body.data).to.be.an("object");
+          userId = res.body.data.userId;
           //res.body.data.should.be.an("object");
 
           done(); // Don't forget the done callback to indicate we're done!
@@ -84,7 +86,7 @@ describe("CRUD Users", () => {
     it("it should get a user by ID ", done => {
       chai
         .request(app)
-        .get("/api/v1/users/15")
+        .get("/api/v1/users/" + userId)
         // we set the auth header with our token
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
@@ -101,7 +103,7 @@ describe("CRUD Users", () => {
     it("it should update a user by ID ", done => {
       chai
         .request(app)
-        .put("/api/v1/users/15")
+        .put("/api/v1/users/" + userId)
         .send(user_update)
         // we set the auth header with our token
         .set("Authorization", "Bearer " + token)
@@ -120,7 +122,7 @@ describe("CRUD Users", () => {
     it("it should delete a user by ID ", done => {
       chai
         .request(app)
-        .delete("/api/v1/users/16")
+        .delete("/api/v1/users/" + userId)
         // we set the auth header with our token
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
