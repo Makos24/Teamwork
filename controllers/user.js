@@ -15,17 +15,9 @@ const getUsers = (request, response) => {
 const getUserById = (request, response) => {
   const id = parseInt(request.params.id);
 
-  db.one("SELECT id, name, email, created_at FROM users WHERE id = $1", id)
-    .then(data => {
-      response.status(200).send({
-        status: "success",
-        data: {
-          userId: data.id,
-          createdOn: data.created_at,
-          name: data.name,
-          email: data.email
-        }
-      });
+  db.one("SELECT name, email, created_at FROM users WHERE id = $1", id)
+    .then(user => {
+      response.status(200).send({ status: "success", data: user });
     })
     .catch(error => {
       response.status(500).send({ status: "error", error: error });

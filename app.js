@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const userRouter = require("./routes/user");
 const postRouter = require("./routes/post");
+const categoryRouter = require("./routes/category");
 
 const app = express();
 
@@ -31,5 +32,6 @@ app.get("/", function(req, res) {
 
 app.use("/api/v1/", userRouter);
 app.use("/api/v1/", postRouter);
+app.use("/api/v1/", categoryRouter);
 
 module.exports = app;

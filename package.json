@@ -4,7 +4,7 @@
   "description": "DevCTrainingWithAndela Capstone Project",
   "main": "server.js",
   "scripts": {
-    "start": "SET NODE_ENV=test && node server.js",
+    "start": "node server.js",
     "test": "mocha"
   },
   "repository": {
