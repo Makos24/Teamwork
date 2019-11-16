@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: articles; Type: TABLE; Schema: public; Owner: me
+-- Name: articles; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.articles (
@@ -34,10 +34,10 @@ CREATE TABLE public.articles (
 );
 
 
-ALTER TABLE public.articles OWNER TO me;
+ALTER TABLE public.articles OWNER TO postgres;
 
 --
--- Name: categories; Type: TABLE; Schema: public; Owner: me
+-- Name: categories; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.categories (
@@ -47,10 +47,10 @@ CREATE TABLE public.categories (
 );
 
 
-ALTER TABLE public.categories OWNER TO me;
+ALTER TABLE public.categories OWNER TO postgres;
 
 --
--- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: me
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.categories_id_seq
@@ -62,17 +62,17 @@ CREATE SEQUENCE public.categories_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.categories_id_seq OWNER TO me;
+ALTER TABLE public.categories_id_seq OWNER TO postgres;
 
 --
--- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.categories_id_seq OWNED BY public.categories.id;
 
 
 --
--- Name: comments; Type: TABLE; Schema: public; Owner: me
+-- Name: comments; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.comments (
@@ -84,10 +84,10 @@ CREATE TABLE public.comments (
 );
 
 
-ALTER TABLE public.comments OWNER TO me;
+ALTER TABLE public.comments OWNER TO postgres;
 
 --
--- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: me
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.comments_id_seq
@@ -99,17 +99,17 @@ CREATE SEQUENCE public.comments_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.comments_id_seq OWNER TO me;
+ALTER TABLE public.comments_id_seq OWNER TO postgres;
 
 --
--- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
 
 
 --
--- Name: gifs; Type: TABLE; Schema: public; Owner: me
+-- Name: gifs; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.gifs (
@@ -121,10 +121,10 @@ CREATE TABLE public.gifs (
 );
 
 
-ALTER TABLE public.gifs OWNER TO me;
+ALTER TABLE public.gifs OWNER TO postgres;
 
 --
--- Name: gifs_id_seq; Type: SEQUENCE; Schema: public; Owner: me
+-- Name: gifs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.gifs_id_seq
@@ -136,17 +136,17 @@ CREATE SEQUENCE public.gifs_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.gifs_id_seq OWNER TO me;
+ALTER TABLE public.gifs_id_seq OWNER TO postgres;
 
 --
--- Name: gifs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
+-- Name: gifs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.gifs_id_seq OWNED BY public.gifs.id;
 
 
 --
--- Name: posts_id_seq; Type: SEQUENCE; Schema: public; Owner: me
+-- Name: posts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.posts_id_seq
@@ -158,17 +158,17 @@ CREATE SEQUENCE public.posts_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.posts_id_seq OWNER TO me;
+ALTER TABLE public.posts_id_seq OWNER TO postgres;
 
 --
--- Name: posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
+-- Name: posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.posts_id_seq OWNED BY public.articles.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: me
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.users (
@@ -181,10 +181,10 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO me;
+ALTER TABLE public.users OWNER TO postgres;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: me
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.users_id_seq
@@ -196,52 +196,52 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO me;
+ALTER TABLE public.users_id_seq OWNER TO postgres;
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: me
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: articles id; Type: DEFAULT; Schema: public; Owner: me
+-- Name: articles id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.articles ALTER COLUMN id SET DEFAULT nextval('public.posts_id_seq'::regclass);
 
 
 --
--- Name: categories id; Type: DEFAULT; Schema: public; Owner: me
+-- Name: categories id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.categories ALTER COLUMN id SET DEFAULT nextval('public.categories_id_seq'::regclass);
 
 
 --
--- Name: comments id; Type: DEFAULT; Schema: public; Owner: me
+-- Name: comments id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
 
 
 --
--- Name: gifs id; Type: DEFAULT; Schema: public; Owner: me
+-- Name: gifs id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.gifs ALTER COLUMN id SET DEFAULT nextval('public.gifs_id_seq'::regclass);
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: me
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
--- Data for Name: articles; Type: TABLE DATA; Schema: public; Owner: me
+-- Data for Name: articles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.articles (id, user_id, title, body, created_at, category_id) FROM stdin;
@@ -251,7 +251,7 @@ COPY public.articles (id, user_id, title, body, created_at, category_id) FROM st
 
 
 --
--- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: me
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.categories (id, name, created_at) FROM stdin;
@@ -262,7 +262,7 @@ COPY public.categories (id, name, created_at) FROM stdin;
 
 
 --
--- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: me
+-- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.comments (id, user_id, post_id, post_type, created_at) FROM stdin;
@@ -270,7 +270,7 @@ COPY public.comments (id, user_id, post_id, post_type, created_at) FROM stdin;
 
 
 --
--- Data for Name: gifs; Type: TABLE DATA; Schema: public; Owner: me
+-- Data for Name: gifs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.gifs (id, user_id, title, image_url, created_at) FROM stdin;
@@ -279,7 +279,7 @@ COPY public.gifs (id, user_id, title, image_url, created_at) FROM stdin;
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: me
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.users (id, name, email, password, role, created_at) FROM stdin;
@@ -294,42 +294,42 @@ COPY public.users (id, name, email, password, role, created_at) FROM stdin;
 
 
 --
--- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: me
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.categories_id_seq', 4, true);
 
 
 --
--- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: me
+-- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.comments_id_seq', 1, false);
 
 
 --
--- Name: gifs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: me
+-- Name: gifs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.gifs_id_seq', 5, true);
 
 
 --
--- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: me
+-- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.posts_id_seq', 2, true);
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: me
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.users_id_seq', 16, true);
 
 
 --
--- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: me
+-- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.categories
@@ -337,7 +337,7 @@ ALTER TABLE ONLY public.categories
 
 
 --
--- Name: comments comments_pkey; Type: CONSTRAINT; Schema: public; Owner: me
+-- Name: comments comments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.comments
@@ -345,7 +345,7 @@ ALTER TABLE ONLY public.comments
 
 
 --
--- Name: gifs gifs_pkey; Type: CONSTRAINT; Schema: public; Owner: me
+-- Name: gifs gifs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.gifs
@@ -353,7 +353,7 @@ ALTER TABLE ONLY public.gifs
 
 
 --
--- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: me
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users
@@ -361,7 +361,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: me
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users
