@@ -9,6 +9,7 @@ let cn = "";
 if (process.env.NODE_ENV == "test") {
   cn = "postgres://me:password@localhost:5432/testdb";
 } else {
+  //cn = "postgres://me:password@localhost:5432/testdb";
   cn = "postgres://postgres@localhost/testdb";
 }
 

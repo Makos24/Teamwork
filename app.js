@@ -5,6 +5,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const userRouter = require("./routes/user");
+const postRouter = require("./routes/post");
 
 const app = express();
 
@@ -29,5 +30,6 @@ app.get("/", function(req, res) {
 });
 
 app.use("/api/v1/", userRouter);
+app.use("/api/v1/", postRouter);
 
 module.exports = app;

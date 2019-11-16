@@ -6,37 +6,37 @@ const { expect } = chai;
 chai.use(chaiHttp);
 
 let login_details = {
-  email: "jdee@mail.com",
+  email: "test@mail.com",
   password: "password"
 };
 
-let no = Math.floor(Math.random() * 100 + 1);
-let user = {
-  name: "Mason Frank",
-  email: "frank" + no + "@team.com",
-  password: "password",
-  role: 2
+let article = {
+  title: "Post Title",
+  body: "Testing create articles with mocha",
+  category_id: 1
 };
 
-let user_update = {
-  name: "Mason G. Frank",
-  email: "frankm" + no + "@team.com"
+let article2 = {
+  title: "Post Title 2",
+  body: "Testing create articles with mocha 2",
+  category_id: 1
 };
+
+let articleId;
 
 let token = "";
-let userId;
 
-describe("CRUD Users", () => {
+describe("CRUD Articles", () => {
   beforeEach(done => {
     chai
       .request(app)
       .post("/api/v1/auth/login")
       .send(login_details)
       .end((err, res) => {
+        //console.log(res.body);
         expect(res).to.have.status(200);
         expect(res.body.status).to.equals("success");
         expect(res.body.data).to.have.property("token");
-        expect(res.body.data.role).to.equals(1);
 
         token = res.body.data.token;
 
@@ -44,20 +44,22 @@ describe("CRUD Users", () => {
       });
   });
 
-  describe("/Add User Account", () => {
-    it("it should create a user account", done => {
+  describe("/Create an article", () => {
+    it("it should store an article to db ", done => {
       chai
         .request(app)
-        .post("/api/v1/users")
-        .send(user)
+        .post("/api/v1/articles")
+        .send(article)
         // set the auth header with token
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
           expect(res).to.have.status(201);
           expect(res.body.status).to.equals("success");
-          expect(res.body.data.message).to.equals("User successfully created");
+          expect(res.body.data.message).to.equals(
+            "Article successfully posted"
+          );
           expect(res.body.data).to.be.an("object");
-          userId = res.body.data.userId;
+          articleId = res.body.data.articleId;
           //res.body.data.should.be.an("object");
 
           done(); // Don't forget the done callback to indicate we're done!
@@ -65,11 +67,11 @@ describe("CRUD Users", () => {
     });
   });
 
-  describe("/Get all users", () => {
-    it("it should get all users ", done => {
+  describe("/Get all articles", () => {
+    it("it should get all articles ", done => {
       chai
         .request(app)
-        .get("/api/v1/users")
+        .get("/api/v1/articles")
         // we set the auth header with our token
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
@@ -82,11 +84,11 @@ describe("CRUD Users", () => {
     });
   });
 
-  describe("/Get user by ID", () => {
-    it("it should get a user by ID ", done => {
+  describe("/Get article by ID", () => {
+    it("it should get an article by ID ", done => {
       chai
         .request(app)
-        .get("/api/v1/users/" + userId)
+        .get("/api/v1/articles/" + articleId)
         // we set the auth header with our token
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
@@ -99,18 +101,20 @@ describe("CRUD Users", () => {
     });
   });
 
-  describe("/Update user by ID", () => {
-    it("it should update a user by ID ", done => {
+  describe("/Update article by ID", () => {
+    it("it should update an article by ID ", done => {
       chai
         .request(app)
-        .put("/api/v1/users/" + userId)
-        .send(user_update)
+        .put("/api/v1/articles/" + articleId)
+        .send(article2)
         // we set the auth header with our token
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
           expect(res).to.have.status(201);
           expect(res.body.status).to.equals("success");
-          expect(res.body.data.message).to.equals("User successfully updated");
+          expect(res.body.data.message).to.equals(
+            "Article successfully updated"
+          );
           expect(res.body.data).to.be.an("object");
 
           done(); // Don't forget the done callback to indicate we're done!
@@ -118,17 +122,19 @@ describe("CRUD Users", () => {
     });
   });
 
-  describe("/Delete user by ID", () => {
-    it("it should delete a user by ID ", done => {
+  describe("/Delete article by ID", () => {
+    it("it should delete an article by ID ", done => {
       chai
         .request(app)
-        .delete("/api/v1/users/" + userId)
+        .delete("/api/v1/articles/" + articleId)
         // we set the auth header with our token
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
           expect(res).to.have.status(201);
           expect(res.body.status).to.equals("success");
-          expect(res.body.data.message).to.equals("User successfully deleted");
+          expect(res.body.data.message).to.equals(
+            "Article successfully deleted"
+          );
           expect(res.body.data).to.be.an("object");
 
           done(); // Don't forget the done callback to indicate we're done!
