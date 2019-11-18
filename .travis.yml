@@ -4,20 +4,13 @@ node_js:
 cache:
   directories:
     - "node_modules"
-
-before_install:
-  - sudo apt-get update
-  - sudo apt-get --yes remove postgresql\*
-  - sudo apt-get install -y postgresql-11 postgresql-client-11
-  - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
-  - sudo service postgresql restart 11
 before_script:
   - psql --version
   - psql -c 'CREATE DATABASE testdb;' -U postgres
-  - psql -c 'CREATE ROLE travis SUPERUSER LOGIN CREATEDB;' -U postgres
-  - psql -U postgres -d testdb -f test/testdb.sql
+  - node db/migrations.js
+  - node db/seeder.js
 
 services:
   - postgresql
 addons:
-  postgresql: "11.2"
+  postgresql: "9.6"
