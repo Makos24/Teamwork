@@ -14,6 +14,15 @@ db.none(
       .catch(error => {
         console.log(error);
       });
+    db.none(
+      "CREATE TABLE IF NOT EXISTS gifs(id SERIAL PRIMARY KEY, title VARCHAR(255) NOT NULL, image_url text NOT NULL, user_id INTEGER REFERENCES users(id), created_at timestamp default current_timestamp)"
+    )
+      .then(data => {
+        console.log("successfully created gifs table");
+      })
+      .catch(error => {
+        console.log(error);
+      });
   })
   .catch(error => {
     console.log(error);
@@ -34,16 +43,6 @@ db.none(
 )
   .then(data => {
     console.log("successfully created comments table");
-  })
-  .catch(error => {
-    console.log(error);
-  });
-
-db.none(
-  "CREATE TABLE IF NOT EXISTS gifs(id SERIAL PRIMARY KEY, title VARCHAR(255) NOT NULL, image_url text NOT NULL, user_id INTEGER REFERENCES users(id), created_at timestamp default current_timestamp)"
-)
-  .then(data => {
-    console.log("successfully created gifs table");
   })
   .catch(error => {
     console.log(error);

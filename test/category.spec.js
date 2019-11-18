@@ -89,7 +89,7 @@ describe("CRUD Categories", () => {
         // we set the auth header with our token
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
-          console.log(res.body);
+          //console.log(res.body);
           expect(res).to.have.status(200);
           expect(res.body.status).to.equals("success");
           expect(res.body.data).to.be.an("object");
