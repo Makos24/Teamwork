@@ -27,3 +27,13 @@ bcrypt.hash(password, 10).then(hash => {
       console.log(error);
     });
 });
+
+db.one("INSERT INTO categories(name) VALUES($1) RETURNING id,name,created_at", [
+  "Default"
+])
+  .then(data => {
+    console.log("Category successfully created");
+  })
+  .catch(error => {
+    console.log(error);
+  });
