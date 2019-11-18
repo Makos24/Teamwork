@@ -39,7 +39,7 @@ describe("CRUD Articles", () => {
   beforeEach(done => {
     chai
       .request(app)
-      .post("/api/v1/auth/login")
+      .post("/api/v1/auth/signin")
       .send(login_details)
       .end((err, res) => {
         //console.log(res.body);
