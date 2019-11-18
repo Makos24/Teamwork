@@ -30,7 +30,7 @@ describe("CRUD Users", () => {
   beforeEach(done => {
     chai
       .request(app)
-      .post("/api/v1/auth/login")
+      .post("/api/v1/auth/signin")
       .send(login_details)
       .end((err, res) => {
         expect(res).to.have.status(200);
@@ -48,7 +48,7 @@ describe("CRUD Users", () => {
     it("it should create a user account", done => {
       chai
         .request(app)
-        .post("/api/v1/users")
+        .post("/api/v1/auth/create-user")
         .send(user)
         // set the auth header with token
         .set("Authorization", "Bearer " + token)
