@@ -6,7 +6,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 
 let login_details = {
-  email: "jdee@mail.com",
+  email: "admin@mail.com",
   password: "password"
 };
 
