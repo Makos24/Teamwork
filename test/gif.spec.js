@@ -78,8 +78,8 @@ describe("CRUD Gifs", () => {
     });
   });
 
-  describe("/Get article by ID", () => {
-    it("it should get an article by ID ", done => {
+  describe("/Get Gif by ID", () => {
+    it("it should get a Gif by ID ", done => {
       chai
         .request(app)
         .get("/api/v1/gifs/" + gifId)
