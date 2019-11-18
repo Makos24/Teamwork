@@ -8,7 +8,6 @@ const userRouter = require("./routes/user");
 const postRouter = require("./routes/post");
 const categoryRouter = require("./routes/category");
 const gifRouter = require("./routes/gif");
-const commentRouter = require("./routes/comment");
 
 const app = express();
 
@@ -36,6 +35,5 @@ app.use("/api/v1/", userRouter);
 app.use("/api/v1/", postRouter);
 app.use("/api/v1/", categoryRouter);
 app.use("/api/v1/", gifRouter);
-app.use("/api/v1/", commentRouter);
 
 module.exports = app;
