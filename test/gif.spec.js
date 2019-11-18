@@ -57,7 +57,7 @@ describe("CRUD Gifs", () => {
         )
         // set the auth header with token
         .end((err, res) => {
-          console.log(res.body);
+          //   console.log(res.body);
           expect(res).to.have.status(201);
           expect(res.body.status).to.equals("success");
           expect(res.body.data.message).to.equals("Gif successfully uploaded");
@@ -113,7 +113,7 @@ describe("CRUD Gifs", () => {
         // set the auth header with token
         .set("Authorization", "Bearer " + token)
         .end((err, res) => {
-          // console.log(res.body);
+          console.log(res.body);
           expect(res).to.have.status(201);
           expect(res.body.status).to.equals("success");
           expect(res.body.data.message).to.equals(
