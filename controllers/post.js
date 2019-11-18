@@ -105,10 +105,122 @@ const deletePost = (request, response) => {
     });
 };
 
+const getComments = (request, response) => {
+  const id = parseInt(request.params.id);
+  db.any(
+    "SELECT * FROM comments WHERE post_id = $1 AND post_type = $2 AND flag = $3 ORDER BY created_at DESC",
+    [id, 1, false]
+  )
+    .then(data => {
+      response.status(200).send({ status: "success", data: data });
+    })
+    .catch(error => {
+      response.status(500).send({ status: "error", error: error });
+    });
+};
+
+const createComment = (request, response) => {
+  const { body } = request.body;
+  const id = parseInt(request.params.id);
+
+  const token = request.headers.authorization.split(" ")[1];
+  const decodedToken = jwt.verify(token, "RANDOM_SECRET");
+
+  const userId = decodedToken.userId;
+  // response.status(200).send(request.body);
+
+  db.one(
+    "INSERT INTO comments(user_id,post_id,post_type,body) VALUES($1, $2, $3, $4) RETURNING id,user_id,post_id,post_type,body,created_at",
+    [userId, id, 1, body]
+  )
+    .then(data => {
+      response.status(201).send({
+        status: "success",
+        data: {
+          message: "Comment successfully posted",
+          commentId: data.id,
+          userId: data.user_id,
+          postId: data.post_id,
+          createdOn: data.created_at
+        }
+      });
+    })
+    .catch(error => {
+      response.status(500).send({ status: "error", error: error });
+    });
+};
+
+const updateComment = (request, response) => {
+  const id = parseInt(request.params.id);
+  const { body } = request.body;
+
+  const token = request.headers.authorization.split(" ")[1];
+  const decodedToken = jwt.verify(token, "RANDOM_SECRET");
+
+  const userId = decodedToken.userId;
+
+  db.one(
+    "UPDATE comments SET body = $1 WHERE id = $2 AND user_id = $3 RETURNING *",
+    [body, id, userId]
+  )
+    .then(data => {
+      response.status(201).send({
+        status: "success",
+        data: {
+          message: "Comment successfully updated",
+          commentId: data.id,
+          userId: data.user_id,
+          postId: data.post_id,
+          createdOn: data.created_at
+        }
+      });
+    })
+    .catch(error => {
+      response.status(500).send({ status: "error", error: error });
+    });
+};
+
+const deleteComment = (request, response) => {
+  const id = parseInt(request.params.id);
+
+  db.result("DELETE FROM comments WHERE id = $1", [id])
+    .then(data => {
+      // rowCount = number of rows affected by the query
+      response.status(201).send({
+        status: "success",
+        data: { message: "Comment successfully deleted" }
+      });
+    })
+    .catch(error => {
+      response.status(500).send({ status: "error", error: error });
+    });
+};
+
+const flagComment = (request, response) => {
+  const id = parseInt(request.params.id);
+
+  db.result("UPDATE comments SET flag = $1 WHERE id = $2", [true, id])
+    .then(data => {
+      // rowCount = number of rows affected by the query
+      response.status(201).send({
+        status: "success",
+        data: { message: "Comment flagged as inappropriate" }
+      });
+    })
+    .catch(error => {
+      response.status(500).send({ status: "error", error: error });
+    });
+};
+
 module.exports = {
   getPosts,
+  getComments,
   getPostById,
   createPost,
+  createComment,
   updatePost,
-  deletePost
+  updateComment,
+  deletePost,
+  deleteComment,
+  flagComment
 };

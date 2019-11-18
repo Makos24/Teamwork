@@ -37,3 +37,29 @@ db.one("INSERT INTO categories(name) VALUES($1) RETURNING id,name,created_at", [
   .catch(error => {
     console.log(error);
   });
+
+db.one(
+  "INSERT INTO articles(user_id,category_id,title,body) VALUES($1, $2, $3, $4) RETURNING *",
+  [2, 1, "Test Article", "This is a short test post"]
+)
+  .then(data => {
+    console.log("Article successfully posted");
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
+db.one(
+  "INSERT INTO gifs(user_id,title,image_url) VALUES($1, $2, $3, $4) RETURNING *",
+  [
+    2,
+    "Test Gif",
+    " http://res.cloudinary.com/makos24/image/upload/v1574060935/teamwork/hjvv8gw9dlaeeqaeofcv.png"
+  ]
+)
+  .then(data => {
+    console.log("Gif successfully posted");
+  })
+  .catch(error => {
+    console.log(error);
+  });
