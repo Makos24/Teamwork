@@ -7,7 +7,6 @@ cache:
 before_script:
   - psql --version
   - psql -c 'CREATE DATABASE testdb;' -U postgres
-  - psql -c 'CREATE ROLE travis SUPERUSER LOGIN CREATEDB;' -U postgres
   - node db/migrations.js
   - node db/seeder.js
 
