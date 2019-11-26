@@ -18,7 +18,7 @@ class Feed extends React.Component {
   }
 
   componentDidMount() {
-    getData("/feed").then(result => {
+    getData("/articles").then(result => {
       let responseJson = result;
       if (responseJson.status === "success") {
         console.log(responseJson.data);

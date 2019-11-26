@@ -22,10 +22,9 @@ export function PostData(type, userData) {
 
 export function PostDataAuth(type, userData) {
   let BaseURL = "https://api-dvc-teamwork.herokuapp.com/api/v1";
-  const bearer =
-    "Bearer " + store.get("twk-userData")
-      ? store.get("twk-userData").token
-      : "";
+  const bearer = store.get("twk-userData")
+    ? "Bearer " + store.get("twk-userData").token
+    : "";
   return new Promise((resolve, reject) => {
     fetch(BaseURL + type, {
       method: "POST",
@@ -48,10 +47,9 @@ export function PostDataAuth(type, userData) {
 
 export function getData(type) {
   let BaseURL = "https://api-dvc-teamwork.herokuapp.com/api/v1";
-  const bearer =
-    "Bearer " + store.get("twk-userData")
-      ? store.get("twk-userData").token
-      : "";
+  const bearer = store.get("twk-userData")
+    ? "Bearer " + store.get("twk-userData").token
+    : "";
   //let BaseURL = 'http://localhost/PHP-Slim-Restful/api/';
   return new Promise((resolve, reject) => {
     fetch(BaseURL + type, {
