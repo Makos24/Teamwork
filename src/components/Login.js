@@ -38,8 +38,13 @@ class Login extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
   render() {
-    if (store.get("twk-userData")) {
+    if (store.get("twk-userData") && store.get("twk-userData").role === 1) {
       return <Redirect to="/users" />;
+    } else if (
+      store.get("twk-userData") &&
+      store.get("twk-userData").role === 2
+    ) {
+      return <Redirect to="/feed" />;
     }
     return (
       <div className="auth-wrapper">

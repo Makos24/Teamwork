@@ -1,12 +1,13 @@
 import store from "store";
 
 export function PostData(type, userData) {
-  let BaseURL = "http://localhost:3008/api/v1";
+  let BaseURL = "https://api-dvc-teamwork.herokuapp.com/api/v1";
   //let BaseURL = 'http://localhost/PHP-Slim-Restful/api/';
   return new Promise((resolve, reject) => {
     fetch(BaseURL + type, {
       method: "POST",
       body: JSON.stringify(userData),
+      mode: "cors",
       headers: { "Content-Type": "application/json" }
     })
       .then(response => response.json())
@@ -20,8 +21,11 @@ export function PostData(type, userData) {
 }
 
 export function PostDataAuth(type, userData) {
-  let BaseURL = "http://localhost:3008/api/v1";
-  const bearer = "Bearer " + store.get("twk-userData").token;
+  let BaseURL = "https://api-dvc-teamwork.herokuapp.com/api/v1";
+  const bearer =
+    "Bearer " + store.get("twk-userData")
+      ? store.get("twk-userData").token
+      : "";
   return new Promise((resolve, reject) => {
     fetch(BaseURL + type, {
       method: "POST",
@@ -43,8 +47,11 @@ export function PostDataAuth(type, userData) {
 }
 
 export function getData(type) {
-  let BaseURL = "http://localhost:3008/api/v1";
-  const bearer = "Bearer " + store.get("twk-userData").token;
+  let BaseURL = "https://api-dvc-teamwork.herokuapp.com/api/v1";
+  const bearer =
+    "Bearer " + store.get("twk-userData")
+      ? store.get("twk-userData").token
+      : "";
   //let BaseURL = 'http://localhost/PHP-Slim-Restful/api/';
   return new Promise((resolve, reject) => {
     fetch(BaseURL + type, {
