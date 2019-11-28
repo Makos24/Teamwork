@@ -1,8 +1,21 @@
 const { db } = require("../db/db");
 const jwt = require("jsonwebtoken");
 
+const getFeed = (request, response) => {
+  db.any(
+    "SELECT * FROM ((SELECT articles.id, articles.title, articles.body, NULL as image_url, articles.user_id, articles.created_at, users.name FROM articles, users WHERE users.id = articles.user_id) UNION  (SELECT gifs.id, gifs.title, gifs.image_url, NULL as body, gifs.user_id, gifs.created_at, users.name FROM gifs, users WHERE users.id = gifs.user_id)) results ORDER BY created_at ASC"
+  )
+    .then(function(data) {
+      response.status(200).send({ status: "success", data: data });
+    })
+    .catch(function(error) {
+      response.status(500).send({ status: "error", error: error });
+    });
+};
 const getPosts = (request, response) => {
-  db.any("SELECT * FROM articles ORDER BY created_at DESC")
+  db.any(
+    "SELECT articles.*, users.name FROM articles, users WHERE articles.user_id = users.id ORDER BY articles.created_at DESC"
+  )
     .then(function(data) {
       response.status(200).send({ status: "success", data: data });
     })
@@ -213,6 +226,7 @@ const flagComment = (request, response) => {
 };
 
 module.exports = {
+  getFeed,
   getPosts,
   getComments,
   getPostById,

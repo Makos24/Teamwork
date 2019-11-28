@@ -6,7 +6,7 @@ const admin = require("../middleware/admin");
 const router = express.Router();
 
 router.get("/articles", auth, db.getPosts);
-router.get("/feeds", auth, db.getPosts);
+router.get("/feed", auth, db.getFeed);
 router.get("/articles/:id", auth, db.getPostById);
 router.post("/articles", auth, db.createPost);
 router.put("/articles/:id", auth, db.updatePost);

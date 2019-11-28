@@ -93,7 +93,12 @@ const loginUser = (request, response) => {
 
           response.status(200).send({
             status: "success",
-            data: { userId: user.id, role: user.role, token: token }
+            data: {
+              userId: user.id,
+              role: user.role,
+              token: token,
+              name: user.name
+            }
           });
         })
         .catch(error => {
