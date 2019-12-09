@@ -23,14 +23,27 @@ class Comments extends React.Component {
 
   toggle() {
     if (!this.state.show) {
-      getData("/articles/" + this.props.post.id + "/comments").then(result => {
-        let responseJson = result;
-        if (responseJson.status === "success") {
-          console.log(responseJson.data);
-          this.setState({ comments: responseJson.data });
-          //   this.setState({ redirectToReferrer: true });
-        }
-      });
+      if (this.props.post.body.search("http://res.cloudinary.com")) {
+        getData("/gifs/" + this.props.post.id + "/comments").then(result => {
+          let responseJson = result;
+          if (responseJson.status === "success") {
+            console.log(responseJson.data);
+            this.setState({ comments: responseJson.data });
+            //   this.setState({ redirectToReferrer: true });
+          }
+        });
+      } else {
+        getData("/articles/" + this.props.post.id + "/comments").then(
+          result => {
+            let responseJson = result;
+            if (responseJson.status === "success") {
+              console.log(responseJson.data);
+              this.setState({ comments: responseJson.data });
+              //   this.setState({ redirectToReferrer: true });
+            }
+          }
+        );
+      }
     }
 
     this.setState(currentState => ({ show: !currentState.show }));

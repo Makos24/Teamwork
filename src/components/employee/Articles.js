@@ -4,10 +4,8 @@ import store from "store";
 import { Redirect } from "react-router-dom";
 import Posts from "./Posts";
 import { getData } from "../../service";
-import CreatePost from "./CreatePost";
-import CreateGif from "./CreateGif";
 
-class Feed extends React.Component {
+class Articles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,39 +13,38 @@ class Feed extends React.Component {
     };
 
     // this.handleFilter = this.handleFilter.bind(this);
-    this.handleDestroy = this.handleDestroy.bind(this);
-    this.saveArticle = this.saveArticle.bind(this);
+    // this.handleDestroy = this.handleDestroy.bind(this);
+    // this.saveUser = this.saveUser.bind(this);
   }
 
   componentDidMount() {
-    getData("/feed").then(result => {
+    getData("/articles").then(result => {
       let responseJson = result;
       if (responseJson.status === "success") {
-        //console.log(responseJson.data);
+        console.log(responseJson.data);
         this.setState({ posts: responseJson.data });
         //   this.setState({ redirectToReferrer: true });
       }
     });
   }
 
-  saveArticle(article) {
-    if (!article.id) {
-      article.id = new Date().getTime();
-      article.name = store.get("twk-userData").name;
-    }
-    this.setState(prevState => {
-      let posts = prevState.posts;
-      posts[article.id] = article;
-      return { posts };
-    });
-  }
-  handleDestroy(postId) {
-    this.setState(prevState => {
-      let posts = prevState.posts;
-      delete posts[postId];
-      return { posts };
-    });
-  }
+  //   saveUser(user) {
+  //     if (!user.id) {
+  //       user.id = new Date().getTime();
+  //     }
+  //     this.setState(prevState => {
+  //       let users = prevState.users;
+  //       users[user.id] = user;
+  //       return { users };
+  //     });
+  //   }
+  //   handleDestroy(productId) {
+  //     this.setState(prevState => {
+  //       let users = prevState.users;
+  //       delete users[productId];
+  //       return { users };
+  //     });
+  //   }
   render() {
     if (!store.get("twk-userData")) {
       return <Redirect to="/login" />;
@@ -56,12 +53,7 @@ class Feed extends React.Component {
       <div className="App container mt-5 mb-5">
         <div className="mt-5 mb-5"></div>
         <div className="container">
-          <h1>Recent Posts</h1>
-
-          <CreatePost onSave={this.saveArticle}></CreatePost>
-
-          <CreateGif onSave={this.saveArticle}></CreateGif>
-
+          <h1>Recent Articles</h1>
           <Posts
             posts={this.state.posts}
             onDestroy={this.handleDestroy}
@@ -73,4 +65,4 @@ class Feed extends React.Component {
   }
 }
 
-export default Feed;
+export default Articles;

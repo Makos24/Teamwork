@@ -12,6 +12,8 @@ import {
 } from "react-router-dom";
 const Users = lazy(() => import("./components/admin/Users"));
 const Feed = lazy(() => import("./components/employee/Feed"));
+const Articles = lazy(() => import("./components/employee/Articles"));
+const Gifs = lazy(() => import("./components/employee/Gifs"));
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +22,7 @@ class App extends React.Component {
   }
   logout() {
     store.remove("twk-userData");
-    return <Redirect to="/login" />;
+    window.location.reload();
   }
   render() {
     let logoutBtn;
@@ -49,6 +51,28 @@ class App extends React.Component {
                   id="navbarTogglerDemo02"
                 >
                   <ul className="navbar-nav ml-auto">
+                    <li className="nav-item">
+                      <Link to="/feed">
+                        <div className="nav-link" href="#">
+                          Feed
+                        </div>
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/articles">
+                        <div className="nav-link" href="#">
+                          Articles
+                        </div>
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/gifs">
+                        <div className="nav-link" href="#">
+                          Gifs
+                        </div>
+                      </Link>
+                    </li>
+
                     <li className="nav-item">{logoutBtn}</li>
                   </ul>
                 </div>
@@ -59,6 +83,8 @@ class App extends React.Component {
               <Route path="/login" component={Login} />
               <Route exact path="/users" component={Users} />
               <Route exact path="/feed" component={Feed} />
+              <Route exact path="/articles" component={Articles} />
+              <Route exact path="/gifs" component={Gifs} />
             </Switch>
           </Suspense>
         </Router>

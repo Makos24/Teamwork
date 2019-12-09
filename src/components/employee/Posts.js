@@ -29,7 +29,11 @@ class Posts extends React.Component {
     var rows = [];
     this.getPosts().forEach(post => {
       rows.push(
-        <Post post={post} key={post.id} onDestroy={this.handleDestroy}></Post>
+        <Post
+          post={post}
+          key={post.id * Math.random()}
+          onDestroy={this.handleDestroy}
+        ></Post>
       );
     });
 

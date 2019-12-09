@@ -45,6 +45,30 @@ export function PostDataAuth(type, userData) {
   });
 }
 
+export function Delete(type) {
+  let BaseURL = "https://api-dvc-teamwork.herokuapp.com/api/v1";
+  const bearer = store.get("twk-userData")
+    ? "Bearer " + store.get("twk-userData").token
+    : "";
+  return new Promise((resolve, reject) => {
+    fetch(BaseURL + type, {
+      method: "DELETE",
+      mode: "cors",
+      headers: {
+        Authorization: bearer,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => response.json())
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
+}
+
 export function getData(type) {
   let BaseURL = "https://api-dvc-teamwork.herokuapp.com/api/v1";
   const bearer = store.get("twk-userData")
